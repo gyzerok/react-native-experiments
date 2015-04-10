@@ -39,9 +39,10 @@ var Movies = React.createClass({
   },
 
   onSelect: function (movie) {
-    this.props.router.push({
+    this.props.navigator.push({
+      title: movie.title,
       component: Info,
-      props: movie
+      passProps: movie
     });
   },
 
@@ -50,7 +51,7 @@ var Movies = React.createClass({
       <ListView
         style={styles.list}
         dataSource={this.state.movies}
-        renderRow={(data) => <Movie {...data} onSelect={this.onSelect} />}
+        renderRow={data => <Movie {...data} onSelect={this.onSelect} />}
       />
     );
   }
@@ -60,7 +61,6 @@ module.exports = Movies;
 
 var styles = StyleSheet.create({
   list: {
-    backgroundColor: '#fff',
-    marginTop: 20
+    backgroundColor: '#fff'
   }
 });

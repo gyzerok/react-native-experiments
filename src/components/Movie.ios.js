@@ -13,6 +13,9 @@ var Movie = React.createClass({
 
   handlePress: function () {
     this.props.onSelect({
+      id: this.props.id,
+      title: this.props.title,
+      year: this.props.year,
       posters: this.props.posters
     });
   },

@@ -4,6 +4,7 @@ var React = require('react-native');
 var {
   View,
   Image,
+  Text,
   StyleSheet
 } = React;
 
@@ -11,6 +12,7 @@ var Info = React.createClass({
   render: function () {
     return (
       <View style={styles.container}>
+        <Text style={styles.year}>{this.props.year}</Text>
         <Image
           source={{uri: this.props.posters.thumbnail}}
           style={styles.poster}
@@ -28,6 +30,11 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff'
+  },
+  year: {
+    fontSize: 20,
+    marginBottom: 8,
+    textAlign: 'center'
   },
   poster: {
     width: 100,

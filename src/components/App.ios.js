@@ -2,31 +2,20 @@
 
 var React = require('react-native');
 var {
-  Navigator,
+  NavigatorIOS,
   StyleSheet
 } = React;
 var Movies = require('./Movies.ios');
 
 var App = React.createClass({
-
-  renderScene: function (route, navigator) {
-    var Component = route.component;
-    var props = route.props || {};
-    return (
-      <Component {...route.props} router={navigator} />
-    );
-  },
-
   render: function () {
     return (
-      <Navigator
+      <NavigatorIOS
+        style={styles.navigator}
         initialRoute={{
             title: 'Movies',
-            component: Movies,
-            index: 0
+            component: Movies
         }}
-        renderScene={this.renderScene}
-        sceneStyle={styles.scene}
       />
     );
   }
@@ -35,7 +24,8 @@ var App = React.createClass({
 module.exports = App;
 
 var styles = StyleSheet.create({
-  scene: {
+  navigator: {
+    flex: 1,
     backgroundColor: '#fff'
   }
 });
