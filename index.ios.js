@@ -3,6 +3,6 @@
 var React = require('react-native');
 var { AppRegistry } = React;
 
-var Movies = require('./src/components/Movies.ios');
+var App = require('./src/components/App.ios');
 
-AppRegistry.registerComponent('AwesomeProject', () => Movies);
+AppRegistry.registerComponent('AwesomeProject', () => App);

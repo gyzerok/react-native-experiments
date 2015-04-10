@@ -3,24 +3,34 @@
 var React = require('react-native');
 var {
   Image,
-  StyleSheet,
+  TouchableHighlight,
   Text,
   View,
+  StyleSheet
 } = React;
 
 var Movie = React.createClass({
+
+  handlePress: function () {
+    this.props.onSelect({
+      posters: this.props.posters
+    });
+  },
+
   render: function () {
     return (
-      <View style={styles.container}>
-        <Image
-          source={{ uri: this.props.posters.thumbnail }}
-          style={styles.thumbnail}
-        />
-        <View style={styles.info}>
-          <Text style={styles.title}>{this.props.title}</Text>
-          <Text style={styles.year}>{this.props.year}</Text>
+      <TouchableHighlight onPress={this.handlePress}>
+        <View style={styles.container}>
+          <Image
+              source={{ uri: this.props.posters.thumbnail }}
+              style={styles.thumbnail}
+          />
+          <View style={styles.info}>
+              <Text style={styles.title}>{this.props.title}</Text>
+              <Text style={styles.year}>{this.props.year}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     );
   }
 });
@@ -31,7 +41,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
     margin: 5
   },
   info: {

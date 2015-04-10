@@ -9,6 +9,7 @@ var {
   View,
 } = React;
 var Movie = require('./Movie.ios');
+var Info = require('./Info.ios');
 
 var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
@@ -30,35 +31,36 @@ var Movies = React.createClass({
     fetch(REQUEST_URL)
       .then(response => response.json())
       .then(data => {
-          this.setState({
-              movies: this.state.movies.cloneWithRows(data.movies)
-          });
+        this.setState({
+            movies: this.state.movies.cloneWithRows(data.movies)
+        });
       })
       .done();
   },
 
-  renderLoadingView: function () {
-    return (
-      <View style={styles.container}>
-        <Text>Loading movies...</Text>
-      </View>
-    );
+  onSelect: function (movie) {
+    this.props.router.push({
+      component: Info,
+      props: movie
+    });
   },
 
   render: function () {
-    // if (!this.state.movies) {
-    //     return this.renderLoadingView();
-    // }
-    //
-    // var movie = this.state.movies[0];
-
     return (
       <ListView
-          dataSource={this.state.movies}
-          renderRow={(data) => <Movie {...data} />}
+        style={styles.list}
+        dataSource={this.state.movies}
+        renderRow={(data) => <Movie {...data} onSelect={this.onSelect} />}
       />
     );
   }
 });
 
 module.exports = Movies;
+
+var styles = StyleSheet.create({
+  list: {
+    backgroundColor: '#fff',
+    marginTop: 20
+  }
+});
